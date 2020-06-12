@@ -4,14 +4,112 @@ var WIZARD_NAMES = ['Иван', 'Хуан Себастьян', 'Мария', 'К
 var WIZARD_SURNAMES = ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг'];
 var WIZARD_COAT_COLOR = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
 var WIZARD_EYES_COLOR = ['black', 'red', 'blue', 'yellow', 'green'];
+var FIREBALL_COLOR = ['#ee4830', '#30a8ee', '#5ce6c0', '#e848d5', '#e6e848'];
 var WIZARDS_COUNT = 4;
+var MIN_NAME_LENGTH = 2;
+var MAX_NAME_LENGTH = 25;
 
 var userDialog = document.querySelector('.setup');
-userDialog.classList.remove('hidden');
+var userDialogOpen = document.querySelector('.setup-open');
+var userDialogClose = document.querySelector('.setup-close');
+var inputUserName = document.querySelector('.setup-user-name');
+var setupWizard = document.querySelector('.setup-wizard');
+var setupWizardCoat = setupWizard.querySelector('.wizard-coat');
+var inputWizardCoat = document.querySelector('input[name="coat-color"]');
+var setupWizardEyes = setupWizard.querySelector('.wizard-eyes');
+var inputWizardEyes = document.querySelector('input[name="eyes-color"]');
+var setupFireball = document.querySelector('.setup-fireball-wrap');
+var inputFireball = document.querySelector('input[name="fireball-color"]');
 var similarListElement = document.querySelector('.setup-similar-list');
 var similarWizardTemplate = document.querySelector('#similar-wizard-template')
   .content
   .querySelector('.setup-similar-item');
+
+var onPopupEscPress = function (evt) {
+  if (inputUserName === document.activeElement) {
+    return;
+  } else {
+    if (evt.key === 'Escape') {
+      evt.preventDefault();
+      closePopup();
+    }
+  }
+};
+
+var openPopup = function () {
+  userDialog.classList.remove('hidden');
+
+  document.addEventListener('keydown', onPopupEscPress);
+};
+
+var closePopup = function () {
+  userDialog.classList.add('hidden');
+
+  document.removeEventListener('keydown', onPopupEscPress);
+
+};
+
+userDialogOpen.addEventListener('click', function () {
+  openPopup();
+});
+
+userDialogOpen.addEventListener('keydown', function (evt) {
+  if (evt.key === 'Enter') {
+    openPopup();
+  }
+});
+
+userDialogClose.addEventListener('click', function () {
+  closePopup();
+});
+
+userDialogClose.addEventListener('keydown', function (evt) {
+  if (evt.key === 'Enter') {
+    closePopup();
+  }
+});
+
+inputUserName.addEventListener('invalid', function () {
+  if (inputUserName.validity.tooShort) {
+    inputUserName.setCustomValidity('Имя должно состоять минимум из 2-ч символов');
+  } else if (inputUserName.validity.tooLong) {
+    inputUserName.setCustomValidity('Имя не должно превышать 25-ти символов');
+  } else if (inputUserName.validity.valueMissing) {
+    inputUserName.setCustomValidity('Обязательное поле!!!');
+  } else {
+    inputUserName.setCustomValidity('');
+  }
+});
+
+inputUserName.addEventListener('input', function () {
+  var valueLength = inputUserName.value.length;
+
+  if (valueLength < MIN_NAME_LENGTH) {
+    inputUserName.setCustomValidity('Еще ' + (MIN_NAME_LENGTH - valueLength) + ' симв.');
+  } else if (valueLength > MAX_NAME_LENGTH) {
+    inputUserName.setCustomValidity('Удалите лишние ' + (valueLength - MAX_NAME_LENGTH) + ' симв.');
+  } else {
+    inputUserName.setCustomValidity('');
+  }
+});
+
+setupWizardCoat.addEventListener('click', function () {
+  var coatColor = WIZARD_COAT_COLOR[getRandomIndex(WIZARD_COAT_COLOR)];
+  setupWizardCoat.style.fill = coatColor;
+  inputWizardCoat.value = coatColor;
+});
+
+setupWizardEyes.addEventListener('click', function () {
+  var eyesColor = WIZARD_EYES_COLOR[getRandomIndex(WIZARD_EYES_COLOR)];
+  setupWizardEyes.style.fill = eyesColor;
+  inputWizardEyes.value = eyesColor;
+});
+
+setupFireball.addEventListener('click', function () {
+  var fireballColor = FIREBALL_COLOR[getRandomIndex(FIREBALL_COLOR)];
+  setupFireball.style.backgroundColor = fireballColor;
+  inputFireball.value = fireballColor;
+});
 
 var getRandomIndex = function (array) {
   return Math.floor(Math.random() * array.length);
