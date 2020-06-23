@@ -5,13 +5,13 @@
   var userDialogOpen = document.querySelector('.setup-open');
   var userDialogClose = document.querySelector('.setup-close');
   var startUserDialog = {
-    x: 720,
+    x: 50,
     y: 80
   };
 
   var onPopupEscPress = function (evt) {
     if (document.activeElement !== window.setup.inputUserName) {
-      window.util.isEscEvent(evt, closePopup);
+      window.util.onEscPress(evt, closePopup);
     }
   };
 
@@ -42,7 +42,7 @@
     userDialogClose.removeEventListener('click', closePopup);
 
     userDialog.style.top = startUserDialog.y + 'px';
-    userDialog.style.left = startUserDialog.x + 'px';
+    userDialog.style.left = startUserDialog.x + '%';
   };
 
   userDialogOpen.addEventListener('click', function () {
@@ -50,10 +50,10 @@
   });
 
   userDialogOpen.addEventListener('keydown', function (evt) {
-    window.util.isEnterEvent(evt, openPopup);
+    window.util.onEnterPress(evt, openPopup);
   });
 
   var onUserDialogCloseEnterPress = function (evt) {
-    window.util.isEnterEvent(evt, closePopup);
+    window.util.onEnterPress(evt, closePopup);
   };
 })();

@@ -2,13 +2,16 @@
 
 (function () {
   window.colorize = {
-    colorizeWizard: function (wizard, colorList) {
-      var indexElementColor = window.data.getRandomIndex(colorList);
-      wizard.fill = colorList[indexElementColor];
-      return wizard.fill;
+    getRandomColorWizardElement: function (wizard, wizardParameter, colorList) {
+      var indexElementColor = window.similarWizards.getRandomIndex(colorList);
+      wizard.wizardParameter = colorList[indexElementColor];
+      return wizard.wizardParameter;
+    },
+    colorizeWizardElement: function (wizadrElement, wizard, wizardParameter, colorList) {
+      wizadrElement.style.fill = window.colorize.getRandomColorWizardElement(wizard, wizardParameter, colorList);
     },
     colorizeButton: function (colorList, element, inputElement) {
-      var elementColor = colorList[window.data.getRandomIndex(colorList)];
+      var elementColor = colorList[window.similarWizards.getRandomIndex(colorList)];
       if (element.tagName.toLowerCase() === 'div') {
         element.style.background = elementColor;
       } else {

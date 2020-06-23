@@ -35,13 +35,13 @@
       }
     },
     SetupWizardCoatClick: function () {
-      window.colorize.colorizeButton(window.data.WIZARD_COAT_COLOR, window.setup.setupWizardCoat, inputWizardCoat);
+      window.colorize.colorizeButton(window.similarWizards.WIZARD_COAT_COLOR, window.setup.setupWizardCoat, inputWizardCoat);
     },
     SetupWizardEyesClick: function () {
-      window.colorize.colorizeButton(window.data.WIZARD_EYES_COLOR, window.setup.setupWizardEyes, inputWizardEyes);
+      window.colorize.colorizeButton(window.similarWizards.WIZARD_EYES_COLOR, window.setup.setupWizardEyes, inputWizardEyes);
     },
     SetupFireballClick: function () {
-      window.colorize.colorizeButton(window.data.FIREBALL_COLOR, window.setup.setupFireball, inputFireball);
+      window.colorize.colorizeButton(window.similarWizards.FIREBALL_COLOR, window.setup.setupFireball, inputFireball);
     }
   };
 

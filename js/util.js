@@ -5,13 +5,13 @@
   var ENTER_KEYCODE = 13;
 
   window.util = {
-    isEscEvent: function (evt, action) {
+    onEscPress: function (evt, action) {
       if (evt.keyCode === ESC_KEYCODE) {
         evt.preventDefault();
         action();
       }
     },
-    isEnterEvent: function (evt, action) {
+    onEnterPress: function (evt, action) {
       if (evt.keyCode === ENTER_KEYCODE) {
         action();
       }
