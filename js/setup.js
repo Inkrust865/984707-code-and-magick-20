@@ -1,13 +1,13 @@
 'use strict';
 
 (function () {
-  var userDialog = document.querySelector('.setup');
   var setupWizard = document.querySelector('.setup-wizard');
   var inputWizardCoat = document.querySelector('input[name="coat-color"]');
   var inputWizardEyes = document.querySelector('input[name="eyes-color"]');
   var inputFireball = document.querySelector('input[name="fireball-color"]');
 
   window.setup = {
+    userDialog: document.querySelector('.setup'),
     inputUserName: document.querySelector('.setup-user-name'),
     setupWizardCoat: setupWizard.querySelector('.wizard-coat'),
     setupWizardEyes: setupWizard.querySelector('.wizard-eyes'),
@@ -45,9 +45,17 @@
     }
   };
 
+  var form = window.setup.userDialog.querySelector('.setup-wizard-form');
   var MIN_NAME_LENGTH = 2;
   var MAX_NAME_LENGTH = 25;
 
-  userDialog.querySelector('.setup-similar').classList.remove('hidden');
+  var onLoad = function () {
+    window.setup.userDialog.classList.add('hidden');
+  };
+
+  form.addEventListener('submit', function (evt) {
+    window.backend.save(new FormData(form), onLoad, window.onError);
+    evt.preventDefault();
+  });
 })();
 
