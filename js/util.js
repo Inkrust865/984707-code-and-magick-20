@@ -15,6 +15,9 @@
       if (evt.keyCode === ENTER_KEYCODE) {
         action();
       }
-    }
+    },
+    getRandomIndex: function (array) {
+      return Math.floor(Math.random() * array.length);
+    },
   };
 })();

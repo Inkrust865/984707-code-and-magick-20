@@ -2,9 +2,6 @@
 
 (function () {
   var setupWizard = document.querySelector('.setup-wizard');
-  var inputWizardCoat = document.querySelector('input[name="coat-color"]');
-  var inputWizardEyes = document.querySelector('input[name="eyes-color"]');
-  var inputFireball = document.querySelector('input[name="fireball-color"]');
 
   window.setup = {
     userDialog: document.querySelector('.setup'),
@@ -33,15 +30,6 @@
       } else {
         window.setup.inputUserName.setCustomValidity('');
       }
-    },
-    SetupWizardCoatClick: function () {
-      window.colorize.colorizeButton(window.similarWizards.WIZARD_COAT_COLOR, window.setup.setupWizardCoat, inputWizardCoat);
-    },
-    SetupWizardEyesClick: function () {
-      window.colorize.colorizeButton(window.similarWizards.WIZARD_EYES_COLOR, window.setup.setupWizardEyes, inputWizardEyes);
-    },
-    SetupFireballClick: function () {
-      window.colorize.colorizeButton(window.similarWizards.FIREBALL_COLOR, window.setup.setupFireball, inputFireball);
     }
   };
 

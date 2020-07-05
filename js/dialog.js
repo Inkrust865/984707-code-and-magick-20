@@ -21,9 +21,6 @@
     document.addEventListener('keydown', onPopupEscPress);
     window.setup.inputUserName.addEventListener('invalid', window.setup.InputUserNameInvalid);
     window.setup.inputUserName.addEventListener('input', window.setup.InputUserNameInput);
-    window.setup.setupWizardCoat.addEventListener('click', window.setup.SetupWizardCoatClick);
-    window.setup.setupWizardEyes.addEventListener('click', window.setup.SetupWizardEyesClick);
-    window.setup.setupFireball.addEventListener('click', window.setup.SetupFireballClick);
     userDialogClose.addEventListener('click', closePopup);
     userDialogClose.addEventListener('keydown', onUserDialogCloseEnterPress);
 
@@ -35,9 +32,9 @@
     document.removeEventListener('keydown', onPopupEscPress);
     window.setup.inputUserName.removeEventListener('invalid', window.setup.InputUserNameInvalid);
     window.setup.inputUserName.removeEventListener('input', window.setup.InputUserNameInput);
-    window.setup.setupWizardCoat.removeEventListener('click', window.setup.SetupWizardCoatClick);
-    window.setup.setupWizardEyes.removeEventListener('click', window.setup.SetupWizardEyesClick);
-    window.setup.setupFireball.removeEventListener('click', window.setup.SetupFireballClick);
+    window.setup.setupWizardCoat.removeEventListener('click', window.wizardModule.SetupWizardCoatClick);
+    window.setup.setupWizardEyes.removeEventListener('click', window.wizardModule.SetupWizardEyesClick);
+    window.setup.setupFireball.removeEventListener('click', window.wizardModule.SetupFireballClick);
     userDialogClose.removeEventListener('keydown', onUserDialogCloseEnterPress);
     userDialogClose.removeEventListener('click', closePopup);
 
